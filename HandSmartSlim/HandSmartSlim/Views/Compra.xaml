@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HandSmartSlim.Views.Compra"
+             Title="Compra">
+    <ContentPage.Content>
+        <StackLayout Margin="0,20,0,0">
+
+            <ImageButton HorizontalOptions="CenterAndExpand"
+                         Source="escanearProduto"
+                         BackgroundColor="Transparent"
+                         WidthRequest="80"
+                         Clicked="OpenScanner"/>
+            
+            <Label Text="Escanear Código"
+                   HorizontalOptions="Center"
+                   FontSize="18"/>
+
+            <Grid Margin="0,10,0,0" BackgroundColor="Beige" Padding="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="35" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="80" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Text="Qtd."
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+
+                <Label Text="Descrição"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="15"
+                       Grid.Column="1"/>
+
+                <Label Text="Valor Un."
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="15"
+                       Grid.Column="2"/>
+
+                <Label Text="Valor Total"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="15"
+                       Grid.Column="3"/>
+
+            </Grid>
+
+            <ListView x:Name="listaCompras" ItemTapped="Clique_Item">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                    <Grid Padding="20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="35"/>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="80" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                    <Label Text="{Binding Qtde}"
+                                               HorizontalOptions="Center"
+                                               FontSize="13"/>
+
+                                        <Label Text="{Binding Descricao}"
+                                               HorizontalOptions="Center"
+                                               LineBreakMode="NoWrap"
+                                               FontSize="13"
+                                               Grid.Column="1"/>
+
+                                        <Label Text="{Binding ValorUnitario, StringFormat='{}{0:c}'}"
+                                               HorizontalOptions="Center"
+                                               FontSize="13"
+                                               Grid.Column="2"/>
+
+                                        <Label Text="{Binding ValorTotal,  StringFormat='{}{0:c}'}"
+                                               HorizontalOptions="Center"
+                                               FontSize="13"
+                                               Grid.Column="3"/>
+                                    </Grid>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+           
+            
+            <StackLayout VerticalOptions="End" BackgroundColor="Beige">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label x:Name="ValorCompra"
+                           FontSize="30"
+                           Grid.Column="0"
+                           VerticalOptions="Center"/>
+
+                    <Button Text="Finalizar"
+                            HorizontalOptions="End"
+                            WidthRequest="150"
+                            HeightRequest="50"
+                            BackgroundColor="DodgerBlue"
+                            TextColor="White"
+                            Grid.Column="1"/>
+                    
+                </Grid>
+                
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

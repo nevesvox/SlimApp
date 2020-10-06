@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HandSmartSlim.Views.Home"
+             Title="Home">
+    <ContentPage.Content>
+        
+        <StackLayout VerticalOptions="Start">
+            <StackLayout>
+                <CarouselView x:Name="CarousselPropagandas" HeightRequest="150">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding .}"
+                                   Aspect="AspectFill"
+                                   VerticalOptions="End"/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                
+            </StackLayout>
+
+            <StackLayout Margin="0,10,0,0">
+                <StackLayout>
+                    <Label Text="Bem Vindo(a)"
+                           FontSize="20"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="Center"/>
+                
+                    <Label x:Name="nomeUsuario"
+                           FontSize="20"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+                
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                 Source="compra"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="75"
+                                 Clicked="AbrePaginaCompra"/>
+
+                    <Label Text="Comprar"
+                               HorizontalOptions="Center"
+                               FontSize="18"
+                               Grid.Row="2"/>
+
+                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                    Grid.Column="1"
+                                    Source="extrato"
+                                    BackgroundColor="Transparent"
+                                    WidthRequest="75"/>
+
+                    <Label Text="Extrato"
+                            Grid.Row="2"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Grid.Column="1"/>
+
+                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                    Grid.Column="2"
+                                    Source="configuracao"
+                                    BackgroundColor="Transparent"
+                                    WidthRequest="75"/>
+
+                    <Label Text="Configurações"
+                               Grid.Row="2"
+                               FontSize="18"
+                               HorizontalOptions="Center"
+                               Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                 Source="cadastroCartao"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="75"
+                                 Clicked="AbrePaginaCartoes"/>
+
+                    <Label Text="Cartões"
+                               HorizontalOptions="Center"
+                               FontSize="18"
+                               Grid.Row="2"/>
+
+                    <ImageButton HorizontalOptions="CenterAndExpand"
+                                    Grid.Column="1"
+                                    Source="exitApp"
+                                    BackgroundColor="Transparent"
+                                    WidthRequest="75"
+                                    Clicked="SaiDoApp"/>
+
+                    <Label Text="Sair"
+                            Grid.Row="2"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Grid.Column="1"/>
+
+                </Grid>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

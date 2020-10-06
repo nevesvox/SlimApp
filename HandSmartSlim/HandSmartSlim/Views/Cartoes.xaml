@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HandSmartSlim.Views.Cartoes"
+             Title="Cartões">
+    <ContentPage.Content>
+        <StackLayout>
+            <CarouselView x:Name="CarousselCartoes" HeightRequest="150" Margin="10,15,10,5" BackgroundColor="Transparent" >
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10" HeightRequest="150" BackgroundColor="LightGray" >
+                            <StackLayout>
+                                <Label Text="{Binding NumeroCartao}"
+                                       HorizontalOptions="Center"
+                                       FontSize="30"/>
+                                <Label Text="{Binding Bandeira}"
+                                       FontSize="20"
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

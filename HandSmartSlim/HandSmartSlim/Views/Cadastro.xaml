@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
+             mc:Ignorable="d"
+             x:Class="HandSmartSlim.Views.Cadastro"
+             Title="Cadastro">
+    <ContentPage.Content>
+        <StackLayout Margin="20,20,20,20">
+            <Image Source="registro.png"
+                   WidthRequest="{OnPlatform iOS=100, Android=100}"
+                   HorizontalOptions="Center"/>
+            
+            <ScrollView>
+                <StackLayout>
+
+                    <Entry Placeholder="Nome completo"
+                           Keyboard="Text"
+                           x:Name="entryNome"/>
+
+                    <Entry  Placeholder="CPF"
+                            Keyboard="Numeric"
+                            x:Name="entryCPF">
+                        <Entry.Behaviors>
+                            <behaviorPack:MaskedBehavior Mask="XXX.XXX.XXX-XX"/>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Entry Placeholder="Telefone"
+                           Keyboard="Numeric"
+                           x:Name="entryTelefone">
+                        <Entry.Behaviors>
+                            <behaviorPack:MaskedBehavior Mask="(XX)XXXXX-XXXX" />
+                        </Entry.Behaviors>
+                     </Entry>
+
+                    <Entry Placeholder="Email"
+                           Keyboard="Email"
+                           MaxLength="60"
+                           x:Name="entryEmail"/>
+
+                    <Entry Placeholder="Confirme o Email"
+                           Keyboard="Email"
+                           MaxLength="60"
+                           x:Name="entryConfirmacaoEmail"/>
+
+                    <Entry Placeholder="Senha"
+                           IsPassword="True"
+                           MaxLength="30"
+                           x:Name="entrySenha"/>
+
+                    <Entry Placeholder="Confirme a Senha"
+                           IsPassword="True"
+                           MaxLength="30"
+                           x:Name="entryConfirmacaoSenha"/>
+
+                    <Button Text="Confirmar"
+                            Clicked="Button_Confirmar"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
