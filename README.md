@@ -1,6 +1,6 @@
 # SlimApp
 
-O aplicativo Slim possui o intuito de facilitar compras em estabelecimento (Adaptável para: Mercados, Varejos, Comércio de Vendas em Geral),
+O aplicativo Slim (Desenvolvido em Xamarin) possui o intuito de facilitar compras em estabelecimento (Adaptável para: Mercados, Varejos, Comércio de Vendas em Geral),
 Proporcionando ao Usuário/Cliente vendas mais rápidas, evitando assim, filas no estabelecimento e esperas indesejadas;
 
 O aplicativo está sendo desenvolvido para um projeto de faculdade para a disciplina: Projeto Integrador I;
@@ -19,3 +19,9 @@ O aplicativo está sendo desenvolvido para um projeto de faculdade para a discip
 </ul>
 
 <a href="https://drive.google.com/file/d/1nEEh_XyiDb2drnP5sXEH-nEJZ6wyz678/view?usp=sharing">Realizar Download do APK (DEV 1.0).</a>
+
+
+ <b>-Observações Para Devs*</b>
+ <p>Necessário ter instalado o pacote <a href="https://dotnet.microsoft.com/apps/xamarin"> XAMARIN </a>;</p>
+ <p>As dependências do APP são instaladas automáticamente no build do APP;</p>
+
