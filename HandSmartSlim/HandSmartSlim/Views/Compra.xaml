@@ -76,7 +76,7 @@
                                                FontSize="13"/>
 
                                         <Label Text="{Binding Descricao}"
-                                               HorizontalOptions="Center"
+                                               HorizontalOptions="Start"
                                                LineBreakMode="NoWrap"
                                                FontSize="13"
                                                Grid.Column="1"/>

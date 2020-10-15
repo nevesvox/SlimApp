@@ -49,5 +49,36 @@ namespace HandSmartSlim.Services
             return resposta;
         }
 
+        public dynamic ExcluiProdutoVenda(int idProduto)
+        {
+            // Envia a requisição para realizaLogin
+            var json = EnviaRequisicao("/excluiProdutoVenda",
+                "idCliente=" + ClienteLogado.id +
+                "&idProduto= " + idProduto
+            );
+
+            // Transforma Json em um Array 
+            dynamic resposta = JsonConvert.DeserializeObject(json);
+
+            // Retorna a requisição
+            return resposta;
+        }
+
+        public dynamic AtualizaQtdeProdutoVenda(int idProduto, int Quantidade)
+        {
+            // Envia a requisição para realizaLogin
+            var json = EnviaRequisicao("/atualizaQtdeProdutoVenda",
+                "idCliente=" + ClienteLogado.id +
+                "&idProduto= " + idProduto +
+                "&quantidade= " + Quantidade
+            );
+
+            // Transforma Json em um Array 
+            dynamic resposta = JsonConvert.DeserializeObject(json);
+
+            // Retorna a requisição
+            return resposta;
+        }
+
     }
 }

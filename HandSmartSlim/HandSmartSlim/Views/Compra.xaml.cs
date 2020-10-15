@@ -1,4 +1,5 @@
 ﻿using HandSmartSlim.Models;
+using HandSmartSlim.Popups;
 using HandSmartSlim.Services;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -23,6 +24,19 @@ namespace HandSmartSlim.Views
             compraService = new CompraService();
         }
 
+        // Verifica o click do botão voltar do Android
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+
+            //new thread
+            Device.BeginInvokeOnMainThread(async () => {
+                return;
+            });
+            // Quebra a função
+            return true;
+        }
+
         protected override void OnAppearing()
         {
             // Busca se o Cliente possui uma venda aberta
@@ -41,6 +55,7 @@ namespace HandSmartSlim.Views
                 {  
                     // Adiciona os dados do array no List
                     compra.Add(new CompraModel() {
+                        Id            = produto.Id,
                         Qtde          = produto.Qtde,
                         Descricao     = produto.Descricao,
                         ValorUnitario = produto.ValorUnitario,
@@ -109,6 +124,7 @@ namespace HandSmartSlim.Views
                             // Adiciona os dados do array no List
                             compra.Add(new CompraModel()
                             {
+                                Id = produto.Id,
                                 Qtde = produto.Qtde,
                                 Descricao = produto.Descricao,
                                 ValorUnitario = produto.ValorUnitario,
@@ -128,18 +144,133 @@ namespace HandSmartSlim.Views
             await Navigation.PushAsync(ScannerPage);
         }
 
+        public async void AtualizaQuantidadeItem(int IdProduto, int Quantidade)
+        {
+            // Chama o Popup de Loading
+            await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
+
+            // Recebe a resposta da requisição
+            var resposta = compraService.AtualizaQtdeProdutoVenda(IdProduto, Quantidade);
+
+            if (resposta.Tipo == "ok")
+            {
+                // Recupera os Registros
+                var arrayProdutos = resposta.Registros;
+
+                // Cria o list de Compra
+                List<CompraModel> compra = new List<CompraModel>();
+
+                // Percorre o array
+                foreach (var produto in arrayProdutos)
+                {
+                    // Adiciona os dados do array no List
+                    compra.Add(new CompraModel()
+                    {
+                        Id = produto.Id,
+                        Qtde = produto.Qtde,
+                        Descricao = produto.Descricao,
+                        ValorUnitario = produto.ValorUnitario,
+                        ValorTotal = produto.ValorTotal
+                    });
+                }
+
+                // Atualiza os registros do list
+                listaCompras.ItemsSource = compra;
+
+                // Recupera o valor total da compra
+                ValorCompra.Text = arrayProdutos[0].ValorCompra.ToString("C");
+
+                // Fecha o loading
+                await PopupNavigation.Instance.PopAsync();
+
+                // Exibe o alerta
+                await DisplayAlert("Tudo Certo", "Produto atualizado!", "Aceitar");
+            }
+            else
+            {
+                // Fecha o loading
+                await PopupNavigation.Instance.PopAsync();
+
+                // Exibe o alerta
+                await DisplayAlert("Ops...", "Ocorreram erros na atualização do Produto. Tente Novamente!", "Aceitar");
+            }
+        }
+
+            public async void ExcluiItemVenda(int IdProduto)
+        {
+            // Chama o Popup de Loading
+            await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
+
+            // Recebe a resposta da requisição
+            var respostaExclusao = compraService.ExcluiProdutoVenda(IdProduto);
+
+            if (respostaExclusao.Tipo == "ok")
+            {
+                // Recupera os Registros
+                var arrayProdutos = respostaExclusao.Registros;
+
+                // Cria o list de Compra
+                List<CompraModel> compra = new List<CompraModel>();
+
+                // Percorre o array
+                foreach (var produto in arrayProdutos)
+                {
+                    // Adiciona os dados do array no List
+                    compra.Add(new CompraModel()
+                    {
+                        Id = produto.Id,
+                        Qtde = produto.Qtde,
+                        Descricao = produto.Descricao,
+                        ValorUnitario = produto.ValorUnitario,
+                        ValorTotal = produto.ValorTotal
+                    });
+                }
+
+                // Atualiza os registros do list
+                listaCompras.ItemsSource = compra;
+
+                // Recupera o valor total da compra
+                ValorCompra.Text = arrayProdutos[0].ValorCompra.ToString("C");
+                
+
+            }
+            else
+            {
+                // Atualiza os registros do list
+                listaCompras.ItemsSource = null;
+                // Recupera o valor total da compra
+                ValorCompra.Text = "";
+            }
+
+            // Fecha o loading
+            await PopupNavigation.Instance.PopAsync();
+
+            // Exibe o alerta
+            await DisplayAlert(
+                "Tudo Certo!",
+                "Produto removido da Venda!",
+                "Aceitar"
+            ); 
+        }
+
         public void Clique_Item(Object sender, ItemTappedEventArgs e)
         {
             if (sender is ListView lv) lv.SelectedItem = null;
-
+            // Recupera o Item Clicado
             var itemSelecionado = e.Item as CompraModel;
 
-            // Exibe o alerta do item Selecionado
-            ExibeAlertaClique(itemSelecionado);
+            // Chama o Popup de alteração do Produto
+            PopupNavigation.Instance.PushAsync(new ItemSelecionadoPopUpView(
+                itemSelecionado.Descricao,
+                itemSelecionado.Qtde,
+                itemSelecionado.Id,
+                this
+            ));
         }
 
         public async void ExibeAlertaClique(CompraModel itemSelecionado)
         {
+            Console.WriteLine(itemSelecionado.Id);
             string result = await DisplayPromptAsync(
                 itemSelecionado.Descricao,
                 "Altere a quantidade de produtos abaixo: ",
@@ -151,6 +282,59 @@ namespace HandSmartSlim.Views
             // Verifica se o usuario clicou em Excluir Produto
             if (result == null)
             {
+                // Chama o Popup de Loading
+                await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
+
+                // Recebe a resposta da requisição
+                var respostaExclusao = compraService.ExcluiProdutoVenda(itemSelecionado.Id);
+                
+                if (respostaExclusao.Tipo == "ok")
+                {
+                    // Recupera os Registros
+                    var arrayProdutos = respostaExclusao.Registros;
+
+                    // Cria o list de Compra
+                    List<CompraModel> compra = new List<CompraModel>();
+
+                    // Percorre o array
+                    foreach (var produto in arrayProdutos)
+                    {
+                        // Adiciona os dados do array no List
+                        compra.Add(new CompraModel()
+                        {
+                            Id = produto.Id,
+                            Qtde = produto.Qtde,
+                            Descricao = produto.Descricao,
+                            ValorUnitario = produto.ValorUnitario,
+                            ValorTotal = produto.ValorTotal
+                        });
+                    }
+
+                    // Atualiza os registros do list
+                    listaCompras.ItemsSource = compra;
+
+                    // Recupera o valor total da compra
+                    ValorCompra.Text = arrayProdutos[0].ValorCompra.ToString("C");
+
+                    // Fecha o loading
+                    await PopupNavigation.Instance.PopAsync();
+                    // Exibe o alerta
+                    await DisplayAlert(
+                        "Tudo Certo!",
+                        "Produto removido da Venda!",
+                        "Aceitar"
+                    );
+                } else
+                {
+                    // Fecha o loading
+                    await PopupNavigation.Instance.PopAsync();
+                    // Exibe o alerta
+                    await DisplayAlert(
+                        "Ops...",
+                        "Não foi possivel remover o Produto da Venda, verifique com repositor ou caixa!",
+                        "Aceitar"
+                    );
+                }
                 return;
             }
 
