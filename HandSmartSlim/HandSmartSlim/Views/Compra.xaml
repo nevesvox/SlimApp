@@ -119,7 +119,7 @@
                             HorizontalOptions="End"
                             WidthRequest="150"
                             HeightRequest="50"
-                            BackgroundColor="DodgerBlue"
+                            BackgroundColor="#2196F3"
                             TextColor="White"
                             Grid.Column="1"/>
                     

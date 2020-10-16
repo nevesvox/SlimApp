@@ -5,60 +5,74 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="HandSmartSlim.Views.Cartoes"
-             Title="Cartões">
+             Title="Cartões"
+             x:Name="currentPage">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout VerticalOptions="CenterAndExpand">
-                <CarouselView x:Name="CarousselCartoes" IndicatorView="indicatorView" HeightRequest="160" Margin="10,0,10,0" BackgroundColor="Transparent" HorizontalScrollBarVisibility="Always">
-                    <CarouselView.ItemTemplate>
+                <ListView x:Name="listaCartoes" RowHeight="210" SeparatorColor="Transparent" >
+                    <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Frame CornerRadius="10" HeightRequest="160" BackgroundColor="DarkKhaki" >
+                            <ViewCell>
                                 <StackLayout>
-                                    <Label Text="{Binding NumeroCartao}"
-                                       TextColor="White"
-                                       HorizontalOptions="Center"
-                                       FontSize="30"/>
-                                    <Label Text="{Binding NomeCartao}"
-                                       TextColor="White"
-                                       FontSize="20"
-                                       HorizontalOptions="Center"/>
-                                    <Image Source="{Binding Imagem}"
-                                       WidthRequest="50"
-                                       HorizontalOptions="End"
-                                       VerticalOptions="Start"/>
+                                    <Frame CornerRadius="10" HeightRequest="150" Margin="20,10,20,10" BackgroundColor="DarkKhaki" >
+                                        <StackLayout>
+                                            <Label Text="{Binding NumeroCartao}"
+                                                   TextColor="White"
+                                                   HorizontalOptions="Center"
+                                                   FontSize="30"/>
+                                            <Label Text="{Binding NomeCartao}"
+                                                   TextColor="White"
+                                                   FontSize="20"
+                                                   HorizontalOptions="Center"/>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Label Text="{Binding Validade}"
+                                                       TextColor="White"
+                                                       Grid.Column="0"
+                                                       FontSize="20"
+                                                       Margin="30,30,0,0"
+                                                       HorizontalOptions="Start"/>
+
+                                                <Image Source="{Binding Imagem}"
+                                                       Grid.Column="1"
+                                                       Margin="20"
+                                                       WidthRequest="50"
+                                                       HorizontalOptions="End"
+                                                       VerticalOptions="Start"/>
+                                            </Grid>
+
+                                        </StackLayout>
+                                    </Frame>
                                 </StackLayout>
-                            </Frame>
+                            </ViewCell>
                         </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-                <IndicatorView x:Name="indicatorView"
-                   IndicatorColor="LightGray"
-                   SelectedIndicatorColor="Black"
-                   HorizontalOptions="Center"/>
-
-                <Label Text="Clique sobre o cartão para editar as informações"
-                       HorizontalTextAlignment="Center"/>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
-           
 
-            <StackLayout VerticalOptions="StartAndExpand">
+            <StackLayout VerticalOptions="EndAndExpand" HeightRequest="150">
 
                 <Button Text="+ Adicionar"
-                    Margin="20,30,20,0"
-                    TextColor="White"
-                    FontSize="30"
-                    BackgroundColor="DodgerBlue"
-                    />
+                        Margin="20,10,20,30"
+                        TextColor="White"
+                        FontSize="30"
+                        BackgroundColor="#2196F3"
+                        Clicked="Button_Clicked"/>
 
                 <Label Text="Atenção! Suas informações de Pagamento estão armazenadas com segurança de nivel Bancário."
                    HorizontalTextAlignment="Center"
-                   FontSize="15"
-                   TextColor="Red"/>
+                   FontSize="15"/>
 
             </StackLayout>
-
-           
-
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
