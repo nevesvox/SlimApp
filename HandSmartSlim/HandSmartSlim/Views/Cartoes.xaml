@@ -8,23 +8,57 @@
              Title="Cartões">
     <ContentPage.Content>
         <StackLayout>
-            <CarouselView x:Name="CarousselCartoes" HeightRequest="150" Margin="10,15,10,5" BackgroundColor="Transparent" >
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame CornerRadius="10" HeightRequest="150" BackgroundColor="LightGray" >
-                            <StackLayout>
-                                <Label Text="{Binding NumeroCartao}"
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <CarouselView x:Name="CarousselCartoes" IndicatorView="indicatorView" HeightRequest="160" Margin="10,0,10,0" BackgroundColor="Transparent" HorizontalScrollBarVisibility="Always">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="10" HeightRequest="160" BackgroundColor="DarkKhaki" >
+                                <StackLayout>
+                                    <Label Text="{Binding NumeroCartao}"
+                                       TextColor="White"
                                        HorizontalOptions="Center"
                                        FontSize="30"/>
-                                <Label Text="{Binding Bandeira}"
+                                    <Label Text="{Binding NomeCartao}"
+                                       TextColor="White"
                                        FontSize="20"
                                        HorizontalOptions="Center"/>
-                            </StackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
-            
+                                    <Image Source="{Binding Imagem}"
+                                       WidthRequest="50"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Start"/>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView x:Name="indicatorView"
+                   IndicatorColor="LightGray"
+                   SelectedIndicatorColor="Black"
+                   HorizontalOptions="Center"/>
+
+                <Label Text="Clique sobre o cartão para editar as informações"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+           
+
+            <StackLayout VerticalOptions="StartAndExpand">
+
+                <Button Text="+ Adicionar"
+                    Margin="20,30,20,0"
+                    TextColor="White"
+                    FontSize="30"
+                    BackgroundColor="DodgerBlue"
+                    />
+
+                <Label Text="Atenção! Suas informações de Pagamento estão armazenadas com segurança de nivel Bancário."
+                   HorizontalTextAlignment="Center"
+                   FontSize="15"
+                   TextColor="Red"/>
+
+            </StackLayout>
+
+           
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

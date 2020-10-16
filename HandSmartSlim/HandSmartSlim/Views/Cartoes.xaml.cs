@@ -19,8 +19,8 @@ namespace HandSmartSlim.Views
             // Inicializa o array de imagens de propaganda
             var cartoes = new List<CartaoModel>
             {
-                new CartaoModel {NumeroCartao = "4564-4564-4564", Bandeira = "Mastercard"},
-                new CartaoModel {NumeroCartao = "1111-1111-1111", Bandeira = "Mastercard"}
+                new CartaoModel {NumeroCartao = "4564-4564-4564", Bandeira = "Mastercard", NomeCartao = "Gabriel Neves", Imagem = "masterCard"},
+                new CartaoModel {NumeroCartao = "1111-1111-1111", Bandeira = "Mastercard", NomeCartao = "Gabriel Neves", Imagem = "visaCard"}
             };
 
             CarousselCartoes.ItemsSource = cartoes;
