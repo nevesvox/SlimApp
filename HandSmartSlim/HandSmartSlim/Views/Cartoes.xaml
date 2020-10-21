@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout VerticalOptions="CenterAndExpand">
-                <ListView x:Name="listaCartoes" RowHeight="210" SeparatorColor="Transparent" >
+                <ListView x:Name="listaCartoes" RowHeight="210" SeparatorColor="Transparent" ItemTapped="listaCartoes_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -20,10 +20,10 @@
                                             <Label Text="{Binding NumeroCartao}"
                                                    TextColor="White"
                                                    HorizontalOptions="Center"
-                                                   FontSize="30"/>
+                                                   FontSize="Large"/>
                                             <Label Text="{Binding NomeCartao}"
                                                    TextColor="White"
-                                                   FontSize="20"
+                                                   FontSize="Medium"
                                                    HorizontalOptions="Center"/>
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
@@ -37,7 +37,7 @@
                                                 <Label Text="{Binding Validade}"
                                                        TextColor="White"
                                                        Grid.Column="0"
-                                                       FontSize="20"
+                                                       FontSize="Medium"
                                                        Margin="30,30,0,0"
                                                        HorizontalOptions="Start"/>
 
@@ -63,13 +63,13 @@
                 <Button Text="+ Adicionar"
                         Margin="20,10,20,30"
                         TextColor="White"
-                        FontSize="30"
+                        FontSize="Large"
                         BackgroundColor="#2196F3"
                         Clicked="Button_Clicked"/>
 
                 <Label Text="Atenção! Suas informações de Pagamento estão armazenadas com segurança de nivel Bancário."
                    HorizontalTextAlignment="Center"
-                   FontSize="15"/>
+                   FontSize="Small"/>
 
             </StackLayout>
             

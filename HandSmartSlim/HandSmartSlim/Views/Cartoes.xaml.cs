@@ -14,15 +14,16 @@ namespace HandSmartSlim.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Cartoes : ContentPage
     {
-        CartaoModel CartaoSelecionado;
         public Cartoes()
         {
             InitializeComponent();
             // Inicializa o array de imagens de propaganda
             var cartoes = new List<CartaoModel>
             {
-                new CartaoModel {NumeroCartao = "4564-4564-4564", Bandeira = "Mastercard", NomeCartao = "Gabriel Neves", Imagem = "masterCard", Validade = "01/25"},
-                new CartaoModel {NumeroCartao = "1111-1111-1111", Bandeira = "Mastercard", NomeCartao = "Gabriel Neves", Imagem = "visaCard", Validade = "03/25"}
+                new CartaoModel {NumeroCartao = "4564 4564 4564 4564", Bandeira = "Mastercard", NomeCartao = "GABRIEL NEVES", Imagem = "masterCard", Validade = "01/25"},
+                new CartaoModel {NumeroCartao = "1111 1111 1111 1111", Bandeira = "Mastercard", NomeCartao = "GABRIEL NEVES", Imagem = "visaCard", Validade = "03/25"},
+                new CartaoModel {NumeroCartao = "1111 1111 1111 1111", Bandeira = "Mastercard", NomeCartao = "GABRIEL NEVES", Imagem = "visaCard", Validade = "03/25"},
+                new CartaoModel {NumeroCartao = "1111 1111 1111 1111", Bandeira = "Mastercard", NomeCartao = "GABRIEL NEVES", Imagem = "visaCard", Validade = "03/25"}
             };
 
             listaCartoes.ItemsSource = cartoes;
@@ -38,26 +39,22 @@ namespace HandSmartSlim.Views
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
-        {
-            // Chama o Popup de Loading
-            await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
-            
+        {    
             // Chama a página de Manutenção de Cartoes 
             // passando o tipo de Operação( 1 - Inclusão de Cartão)
             await Navigation.PushAsync(new ManutencaoCartoes(1));
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
+        private void listaCartoes_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            Console.WriteLine(CartaoSelecionado);
-            //var teste = CarousselCartoes.CurrentItem as CartaoModel;
+            if (sender is ListView lv) lv.SelectedItem = null;
 
-            //Console.WriteLine(teste);
+            // Recupera o Cartão Clicado
+            var cartaoClicado = e.Item as CartaoModel;
+
+            // Chama a Pagina de Manutenção de Cartão
+            // passando o tipo de Operação - 2 (Edição de Cartão)
+            Navigation.PushAsync(new ManutencaoCartoes(2, cartaoClicado));
         }
-
-        public ICommand ItemChangedCommand => new Command<CartaoModel>((item) =>
-        {
-            Console.WriteLine(item);
-        });
     }
 }

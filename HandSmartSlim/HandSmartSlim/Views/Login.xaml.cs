@@ -27,6 +27,19 @@ namespace HandSmartSlim.Views
             clienteService = new ClienteService();
         }
 
+        // Verifica o click do botão voltar do Android
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+
+            //new thread
+            Device.BeginInvokeOnMainThread(async () => {
+                return;
+            });
+            // Quebra a função
+            return true;
+        }
+
         protected override void OnAppearing()
         {
             // Verifica Manter Conectado

@@ -12,11 +12,11 @@
                         <StackLayout>
                             <Label TextColor="White"
                                    HorizontalOptions="Center"
-                                   FontSize="30"
+                                   FontSize="Large"
                                    x:Name="lblNumeroCartao"/>
 
                             <Label TextColor="White"
-                                   FontSize="20"
+                                   FontSize="Medium"
                                    HorizontalOptions="Center"
                                    x:Name="lblNomeCartao"/>
 
@@ -31,7 +31,7 @@
 
                                 <Label TextColor="White"
                                        Grid.Column="0"
-                                       FontSize="20"
+                                       FontSize="Medium"
                                        Margin="30,30,0,0"
                                        HorizontalOptions="Start"
                                        x:Name="lblValidadeCartao"/>
@@ -63,7 +63,7 @@
                     <Entry x:Name="entryNomeCartao"
                            TextChanged="entryNomeCartao_TextChanged"
                            MaxLength="20"
-                           Keyboard="Text"/>
+                           Keyboard="Chat"/>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -99,7 +99,8 @@
                                Grid.Row="1"
                                Margin="0,0,0,0"
                                Keyboard="Numeric"
-                               MaxLength="3"/>
+                               MaxLength="3"
+                               x:Name="entryCodigo"/>
                     </Grid>
 
 
@@ -107,7 +108,17 @@
             </StackLayout>
             <StackLayout VerticalOptions="EndAndExpand">
                 <Button Text="Salvar"
+                        CornerRadius="10"
+                        TextColor="White"
+                        BackgroundColor="#2196F3"
                         x:Name="btnSalvarCartao"
+                        IsVisible="false"/>
+                
+                <Button Text="Excluir"
+                        BackgroundColor="Red"
+                        TextColor="White"
+                        CornerRadius="10"
+                        x:Name="btnExcluirCartao"
                         IsVisible="false"/>
 
             </StackLayout>
