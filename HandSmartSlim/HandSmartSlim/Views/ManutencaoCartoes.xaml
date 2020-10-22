@@ -48,6 +48,14 @@
                 </StackLayout>
 
                 <StackLayout Margin="20,20,20,0">
+                    <Label Text="Bandeira"
+                           x:Name="lblBandeira"/>
+                    
+                    <Picker x:Name="pickerBandeiras"
+                            ItemDisplayBinding="{Binding Bandeira}"
+                            SelectedIndexChanged="pickerBandeiras_SelectedIndexChanged"
+                            SelectedItem="{Binding BandeiraSelecionada}"/>
+                    
                     <Label Text="Número do Cartão"/>
 
                     <Entry TextChanged="Entry_TextChanged"
@@ -110,6 +118,7 @@
                 <Button Text="Salvar"
                         CornerRadius="10"
                         TextColor="White"
+                        Clicked="btnSalvarCartao_Clicked"
                         BackgroundColor="#2196F3"
                         x:Name="btnSalvarCartao"
                         IsVisible="false"/>
@@ -119,6 +128,7 @@
                         TextColor="White"
                         CornerRadius="10"
                         x:Name="btnExcluirCartao"
+                        Clicked="btnExcluirCartao_Clicked"
                         IsVisible="false"/>
 
             </StackLayout>

@@ -64,6 +64,65 @@ namespace HandSmartSlim.Services
             return result;
         }
 
+        // Função responsável por Buscar os Cartões do Cliente
+        public dynamic BuscaCartaoCreditoCliente()
+        {
+            // Envia a requisição para buscaCartaoCreditoCliente
+            var json = EnviaRequisicao("/buscaCartaoCreditoCliente",
+                "idCliente=" + ClienteLogado.id 
+            );
+
+            // Transforma Json em um Array 
+            dynamic resposta = JsonConvert.DeserializeObject(json);
+
+            // Retorna a requisição
+            return resposta;
+        }
+
+        // Função responsável por Salvar Novo Cartão do Cliente
+        public dynamic SalvaCartao(
+            string Bandeira,
+            string Imagem,
+            string Numero,
+            string Nome,
+            string Validade,
+            int    Codigo
+        )
+        {
+            // Envia a requisição para salvaNovoCartao
+            var json = EnviaRequisicao("/salvaNovoCartao",
+                "idCliente=" + ClienteLogado.id +
+                "&bandeira=" + Bandeira +
+                "&imagem="   + Imagem +
+                "&numero="   + Numero +
+                "&nome="     + Nome +
+                "&validade=" + Validade +
+                "&codigo="   + Codigo
+            );
+
+            // Transforma Json em um Array 
+            dynamic resposta = JsonConvert.DeserializeObject(json);
+
+            // Retorna a requisição
+            return resposta;
+        }
+
+        // Função responsável por Excluir o Cartão do Cliente
+        public dynamic ExcluiCartao(int idCartao)
+        {
+            // Envia a requisição para salvaNovoCartao
+            var json = EnviaRequisicao("/excluiCartao",
+                "idCliente=" + ClienteLogado.id +
+                "&idCartao=" + idCartao
+            );
+
+            // Transforma Json em um Array 
+            dynamic resposta = JsonConvert.DeserializeObject(json);
+
+            // Retorna a requisição
+            return resposta;
+        }
+
     }
 
 }

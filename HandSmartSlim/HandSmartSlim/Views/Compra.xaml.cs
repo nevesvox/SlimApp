@@ -196,7 +196,7 @@ namespace HandSmartSlim.Views
             }
         }
 
-            public async void ExcluiItemVenda(int IdProduto)
+        public async void ExcluiItemVenda(int IdProduto)
         {
             // Chama o Popup de Loading
             await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());

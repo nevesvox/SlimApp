@@ -1,4 +1,5 @@
 ﻿using HandSmartSlim.Models;
+using HandSmartSlim.Services;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -14,19 +15,12 @@ namespace HandSmartSlim.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Cartoes : ContentPage
     {
+        ClienteService clienteService;
         public Cartoes()
         {
             InitializeComponent();
-            // Inicializa o array de imagens de propaganda
-            var cartoes = new List<CartaoModel>
-            {
-                new CartaoModel {NumeroCartao = "4564 4564 4564 4564", Bandeira = "Mastercard", NomeCartao = "GABRIEL NEVES", Imagem = "masterCard", Validade = "01/25"},
-                new CartaoModel {NumeroCartao = "1111 1111 1111 1111", Bandeira = "Mastercard", NomeCartao = "GABRIEL NEVES", Imagem = "visaCard", Validade = "03/25"},
-                new CartaoModel {NumeroCartao = "1111 1111 1111 1111", Bandeira = "Mastercard", NomeCartao = "GABRIEL NEVES", Imagem = "visaCard", Validade = "03/25"},
-                new CartaoModel {NumeroCartao = "1111 1111 1111 1111", Bandeira = "Mastercard", NomeCartao = "GABRIEL NEVES", Imagem = "visaCard", Validade = "03/25"}
-            };
-
-            listaCartoes.ItemsSource = cartoes;
+            clienteService = new ClienteService();
+            AtualizaListaCartoes();
         }
         protected override void OnAppearing()
         {
@@ -42,7 +36,7 @@ namespace HandSmartSlim.Views
         {    
             // Chama a página de Manutenção de Cartoes 
             // passando o tipo de Operação( 1 - Inclusão de Cartão)
-            await Navigation.PushAsync(new ManutencaoCartoes(1));
+            await Navigation.PushAsync(new ManutencaoCartoes(1, null , this));
         }
 
         private void listaCartoes_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -54,7 +48,39 @@ namespace HandSmartSlim.Views
 
             // Chama a Pagina de Manutenção de Cartão
             // passando o tipo de Operação - 2 (Edição de Cartão)
-            Navigation.PushAsync(new ManutencaoCartoes(2, cartaoClicado));
+            Navigation.PushAsync(new ManutencaoCartoes(2, cartaoClicado, this));
+        }
+
+        public void AtualizaListaCartoes()
+        {
+            // Chama a função que realiza a busca de cartões
+            var resultBuscaCartao = clienteService.BuscaCartaoCreditoCliente();
+
+            // Verifica o resultado da busca
+            if (resultBuscaCartao.Tipo == "ok")
+            {
+                // Recupera os Registros
+                var arrayCartoes = resultBuscaCartao.Registros;
+
+                // Cria o list de cartoes
+                List<CartaoModel> listCartoes = new List<CartaoModel>();
+
+                // Percorre o array
+                foreach (var cartao in arrayCartoes)
+                {
+                    // Adiciona os dados do array no List
+                    listCartoes.Add(new CartaoModel()
+                    {
+                        IdCartao = cartao.id,
+                        NumeroCartao = cartao.numero,
+                        NomeCartao = cartao.nome,
+                        Imagem = cartao.imagem,
+                        Validade = cartao.validade
+                    });
+                }
+                // Insere dados na Lista
+                listaCartoes.ItemsSource = listCartoes;
+            }
         }
     }
 }
