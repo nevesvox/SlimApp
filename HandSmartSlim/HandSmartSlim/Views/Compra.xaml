@@ -116,6 +116,7 @@
                            VerticalOptions="Center"/>
 
                     <Button Text="Finalizar"
+                            Clicked="Button_Clicked"
                             HorizontalOptions="End"
                             WidthRequest="150"
                             HeightRequest="50"

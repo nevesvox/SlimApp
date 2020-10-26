@@ -6,6 +6,7 @@ namespace HandSmartSlim.Models
 {
     public class CompraModel
     {
+        public int IdCompra { get; set; }
         public int Id { get; set; }
         public string Valor { get; set; }
 

@@ -44,7 +44,7 @@ namespace HandSmartSlim.Views
             // Verifica se o tipo de operação é Inclusão de Cartão
             if (tipoOperacao == 1)
             {
-                btnSalvarCartao.IsVisible = true;
+                btnSalvarCartao.IsVisible  = true;
                 btnExcluirCartao.IsEnabled = false;
             }
 

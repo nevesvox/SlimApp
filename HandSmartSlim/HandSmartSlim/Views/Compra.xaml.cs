@@ -55,11 +55,13 @@ namespace HandSmartSlim.Views
                 {  
                     // Adiciona os dados do array no List
                     compra.Add(new CompraModel() {
+                        IdCompra      = produto.IdCompra,
                         Id            = produto.Id,
                         Qtde          = produto.Qtde,
                         Descricao     = produto.Descricao,
                         ValorUnitario = produto.ValorUnitario,
-                        ValorTotal    = produto.ValorTotal
+                        ValorTotal    = produto.ValorTotal,
+                        ValorCompra   = produto.ValorCompra
                     });
                 }
 
@@ -124,11 +126,13 @@ namespace HandSmartSlim.Views
                             // Adiciona os dados do array no List
                             compra.Add(new CompraModel()
                             {
-                                Id = produto.Id,
-                                Qtde = produto.Qtde,
-                                Descricao = produto.Descricao,
+                                IdCompra      = produto.IdCompra,
+                                Id            = produto.Id,
+                                Qtde          = produto.Qtde,
+                                Descricao     = produto.Descricao,
                                 ValorUnitario = produto.ValorUnitario,
-                                ValorTotal = produto.ValorTotal
+                                ValorTotal    = produto.ValorTotal,
+                                ValorCompra   = produto.ValorCompra
                             });
                         }
 
@@ -166,11 +170,13 @@ namespace HandSmartSlim.Views
                     // Adiciona os dados do array no List
                     compra.Add(new CompraModel()
                     {
-                        Id = produto.Id,
-                        Qtde = produto.Qtde,
-                        Descricao = produto.Descricao,
+                        IdCompra      = produto.IdCompra,
+                        Id            = produto.Id,
+                        Qtde          = produto.Qtde,
+                        Descricao     = produto.Descricao,
                         ValorUnitario = produto.ValorUnitario,
-                        ValorTotal = produto.ValorTotal
+                        ValorTotal    = produto.ValorTotal,
+                        ValorCompra   = produto.ValorCompra
                     });
                 }
 
@@ -218,11 +224,13 @@ namespace HandSmartSlim.Views
                     // Adiciona os dados do array no List
                     compra.Add(new CompraModel()
                     {
-                        Id = produto.Id,
-                        Qtde = produto.Qtde,
-                        Descricao = produto.Descricao,
+                        IdCompra      = produto.IdCompra,
+                        Id            = produto.Id,
+                        Qtde          = produto.Qtde,
+                        Descricao     = produto.Descricao,
                         ValorUnitario = produto.ValorUnitario,
-                        ValorTotal = produto.ValorTotal
+                        ValorTotal    = produto.ValorTotal,
+                        ValorCompra   = produto.ValorCompra
                     });
                 }
 
@@ -302,11 +310,13 @@ namespace HandSmartSlim.Views
                         // Adiciona os dados do array no List
                         compra.Add(new CompraModel()
                         {
-                            Id = produto.Id,
-                            Qtde = produto.Qtde,
-                            Descricao = produto.Descricao,
+                            IdCompra      = produto.IdCompra,
+                            Id            = produto.Id,
+                            Qtde          = produto.Qtde,
+                            Descricao     = produto.Descricao,
                             ValorUnitario = produto.ValorUnitario,
-                            ValorTotal = produto.ValorTotal
+                            ValorTotal    = produto.ValorTotal,
+                            ValorCompra   = produto.ValorCompra
                         });
                     }
 
@@ -358,6 +368,29 @@ namespace HandSmartSlim.Views
                 // Chama a função novamente passando o item selecionado
                 ExibeAlertaClique(itemSelecionado);
                 return;
+            }
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            // Verifica se o List possui itens
+            if (listaCompras.ItemsSource != null)
+            {
+                // Recupera os itens da Lista de Compras
+                var arrayCompra = (listaCompras.ItemsSource as ICollection<CompraModel>).ToArray();
+
+                // Chama o Popup de Loading
+                await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
+
+                // Chama a página de Cartoes
+                // Passando o tipo de operação 1 - Escolha de cartão
+                await Navigation.PushAsync(new Cartoes(1, arrayCompra[0].IdCompra, arrayCompra[0].ValorCompra));
+
+            }
+            else
+            {
+                // Se não possuir nenhum item na lista
+                await DisplayAlert("Atenção", "Nenhum item na Lista de Compras", "Aceitar");
             }
         }
     }

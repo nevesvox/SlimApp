@@ -6,114 +6,116 @@
              Title="Voltar">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout VerticalOptions="CenterAndExpand">
-                <StackLayout>
-                    <Frame Margin="20,20,20,0" CornerRadius="10" BackgroundColor="DarkKhaki" HeightRequest="150" HasShadow="True">
-                        <StackLayout>
-                            <Label TextColor="White"
-                                   HorizontalOptions="Center"
-                                   FontSize="Large"
-                                   x:Name="lblNumeroCartao"/>
-
-                            <Label TextColor="White"
-                                   FontSize="Medium"
-                                   HorizontalOptions="Center"
-                                   x:Name="lblNomeCartao"/>
-
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
+            <ScrollView>
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <StackLayout>
+                        <Frame Margin="20,20,20,0" CornerRadius="10" BackgroundColor="DarkKhaki" HeightRequest="150" HasShadow="True">
+                            <StackLayout>
+                                <Label TextColor="White"
+                                       HorizontalOptions="Center"
+                                       FontSize="Large"
+                                       x:Name="lblNumeroCartao"/>
 
                                 <Label TextColor="White"
-                                       Grid.Column="0"
                                        FontSize="Medium"
-                                       Margin="30,30,0,0"
-                                       HorizontalOptions="Start"
-                                       x:Name="lblValidadeCartao"/>
+                                       HorizontalOptions="Center"
+                                       x:Name="lblNomeCartao"/>
 
-                                <Image WidthRequest="50"
-                                       Grid.Column="1"
-                                       Margin="0,20,0,0"
-                                       HorizontalOptions="End"
-                                       x:Name="imgTipoCartao"/>
-                            </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
+                                    <Label TextColor="White"
+                                           Grid.Column="0"
+                                           FontSize="Medium"
+                                           Margin="30,30,0,0"
+                                           HorizontalOptions="Start"
+                                           x:Name="lblValidadeCartao"/>
 
-                <StackLayout Margin="20,20,20,0">
-                    <Label Text="Bandeira"
-                           x:Name="lblBandeira"/>
+                                    <Image WidthRequest="50"
+                                           Grid.Column="1"
+                                           Margin="0,20,0,0"
+                                           HorizontalOptions="End"
+                                           x:Name="imgTipoCartao"/>
+                                </Grid>
+
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Margin="20,20,20,0">
+                        <Label Text="Bandeira"
+                               x:Name="lblBandeira"/>
                     
-                    <Picker x:Name="pickerBandeiras"
-                            ItemDisplayBinding="{Binding Bandeira}"
-                            SelectedIndexChanged="pickerBandeiras_SelectedIndexChanged"
-                            SelectedItem="{Binding BandeiraSelecionada}"/>
+                        <Picker x:Name="pickerBandeiras"
+                                ItemDisplayBinding="{Binding Bandeira}"
+                                SelectedIndexChanged="pickerBandeiras_SelectedIndexChanged"
+                                SelectedItem="{Binding BandeiraSelecionada}"/>
                     
-                    <Label Text="Número do Cartão"/>
+                        <Label Text="Número do Cartão"/>
 
-                    <Entry TextChanged="Entry_TextChanged"
-                           x:Name="entryNumeroCartao"
-                           Keyboard="Numeric">
-                        <Entry.Behaviors>
-                            <behaviorPack:MaskedBehavior Mask="XXXX XXXX XXXX XXXX" />
-                        </Entry.Behaviors>
-                    </Entry>
-
-                    <Label Text="Nome do Cartão"/>
-
-                    <Entry x:Name="entryNomeCartao"
-                           TextChanged="entryNomeCartao_TextChanged"
-                           MaxLength="20"
-                           Keyboard="Chat"/>
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Label Text="Validade"
-                               Grid.Column="0"
-                               Margin="0,0,0,0"/>
-
-                        <Entry VerticalOptions="Start"
-                               Grid.Column="0"
-                               Grid.Row="1"
-                               Margin="0,0,0,0"
-                               Keyboard="Numeric"
-                               x:Name="entryValidade"
-                               TextChanged="entryValidade_TextChanged">
+                        <Entry TextChanged="Entry_TextChanged"
+                               x:Name="entryNumeroCartao"
+                               Keyboard="Numeric">
                             <Entry.Behaviors>
-                                <behaviorPack:MaskedBehavior Mask="XX/XX" />
+                                <behaviorPack:MaskedBehavior Mask="XXXX XXXX XXXX XXXX" />
                             </Entry.Behaviors>
                         </Entry>
 
-                        <Label Text="Código CVV"
-                               Grid.Column="1"/>
+                        <Label Text="Nome do Cartão"/>
 
-                        <Entry VerticalOptions="Start"
-                               Grid.Column="1"
-                               Grid.Row="1"
-                               Margin="0,0,0,0"
-                               Keyboard="Numeric"
-                               MaxLength="3"
-                               x:Name="entryCodigo"/>
-                    </Grid>
+                        <Entry x:Name="entryNomeCartao"
+                               TextChanged="entryNomeCartao_TextChanged"
+                               MaxLength="20"
+                               Keyboard="Chat"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Text="Validade"
+                                   Grid.Column="0"
+                                   Margin="0,0,0,0"/>
+
+                            <Entry VerticalOptions="Start"
+                                   Grid.Column="0"
+                                   Grid.Row="1"
+                                   Margin="0,0,0,0"
+                                   Keyboard="Numeric"
+                                   x:Name="entryValidade"
+                                   TextChanged="entryValidade_TextChanged">
+                                <Entry.Behaviors>
+                                    <behaviorPack:MaskedBehavior Mask="XX/XX" />
+                                </Entry.Behaviors>
+                            </Entry>
+
+                            <Label Text="Código CVV"
+                                   Grid.Column="1"/>
+
+                            <Entry VerticalOptions="Start"
+                                   Grid.Column="1"
+                                   Grid.Row="1"
+                                   Margin="0,0,0,0"
+                                   Keyboard="Numeric"
+                                   MaxLength="3"
+                                   x:Name="entryCodigo"/>
+                        </Grid>
 
 
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
+            </ScrollView>
             <StackLayout VerticalOptions="EndAndExpand">
                 <Button Text="Salvar"
                         CornerRadius="10"

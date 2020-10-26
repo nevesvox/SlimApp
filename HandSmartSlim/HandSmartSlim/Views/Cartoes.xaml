@@ -9,8 +9,15 @@
              x:Name="currentPage">
     <ContentPage.Content>
         <StackLayout>
+
+            <StackLayout VerticalOptions="StartAndExpand" x:Name="layoutEscolha" IsVisible="false">
+                <Label Text="Selecione o Cartão que deseja realizar o Pagamento"
+                   HorizontalTextAlignment="Center"
+                   FontSize="Large"/>
+            </StackLayout>
+            
             <StackLayout VerticalOptions="CenterAndExpand">
-                <ListView x:Name="listaCartoes" RowHeight="210" SeparatorColor="Transparent" ItemTapped="listaCartoes_ItemTapped">
+                <ListView x:Name="listaCartoes" RowHeight="210" SeparatorColor="Transparent">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -58,12 +65,13 @@
                 </ListView>
             </StackLayout>
 
-            <StackLayout VerticalOptions="EndAndExpand" HeightRequest="150">
+            <StackLayout VerticalOptions="EndAndExpand" HeightRequest="150" x:Name="LayoutManutencao" IsVisible="false">
 
                 <Button Text="+ Adicionar"
                         Margin="20,10,20,30"
                         TextColor="White"
                         FontSize="Large"
+                        CornerRadius="10"
                         BackgroundColor="#2196F3"
                         Clicked="Button_Clicked"/>
 
