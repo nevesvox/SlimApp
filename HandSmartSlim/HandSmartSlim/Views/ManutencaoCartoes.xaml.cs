@@ -227,32 +227,37 @@ namespace HandSmartSlim.Views
 
         private async void btnExcluirCartao_Clicked(object sender, EventArgs e)
         {
-            // Chama o Popup de Loading
-            await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
+            bool resposta = await DisplayAlert("Atenção", "Deseja continuar com a exclusão do Cartão?", "Sim", "Não");
 
-            var result = clienteService.ExcluiCartao(idCartao);
+            if (resposta)
+            { 
+                // Chama o Popup de Loading
+                await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
+
+                var result = clienteService.ExcluiCartao(idCartao);
             
-            // Fecha o Popup de Loading
-            try
-            {
-                await PopupNavigation.Instance.PopAsync();
-            }
-            catch (Exception) { };
+                // Fecha o Popup de Loading
+                try
+                {
+                    await PopupNavigation.Instance.PopAsync();
+                }
+                catch (Exception) { };
 
-            // Verifica a resposta da requisição
-            if (result.Tipo == "ok")
-            {
-                // Exibe o alerta
-                await DisplayAlert("Tudo Certo!", "Cartão Excluido com Sucesso!", "Aceitar");
-                // Chama a função que atualiza a Lista de Cartões
-                cartoesPage.AtualizaListaCartoes();
-                // Retorna a página anterior
-                await Application.Current.MainPage.Navigation.PopAsync();
-            }
-            else
-            {
-                // Exibe o alerta
-                await DisplayAlert("Ops...", "Não foi possivel Excluir o Cartão. Tente novamente!", "Aceitar");
+                // Verifica a resposta da requisição
+                if (result.Tipo == "ok")
+                {
+                    // Exibe o alerta
+                    await DisplayAlert("Tudo Certo!", "Cartão Excluido com Sucesso!", "Aceitar");
+                    // Chama a função que atualiza a Lista de Cartões
+                    cartoesPage.AtualizaListaCartoes();
+                    // Retorna a página anterior
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+                    // Exibe o alerta
+                    await DisplayAlert("Ops...", "Não foi possivel Excluir o Cartão. Tente novamente!", "Aceitar");
+                }
             }
         }
     }

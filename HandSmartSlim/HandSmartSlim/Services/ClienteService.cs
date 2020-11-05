@@ -141,6 +141,35 @@ namespace HandSmartSlim.Services
             return resposta;
         }
 
+        // Função responsável por Finalizar a Compra do Cliente
+        public dynamic buscaUltimasComprasCliente()
+        {
+            // Envia a requisição para salvaNovoCartao
+            var json = EnviaRequisicao("/buscaUltimasComprasCliente",
+                "idCliente=" + ClienteLogado.id
+            );
+
+            // Transforma Json em um Array 
+            dynamic resposta = JsonConvert.DeserializeObject(json);
+
+            // Retorna a requisição
+            return resposta;
+        }
+
+        public dynamic buscaItensCompra(int IdCompra)
+        {
+            // Envia a requisição para salvaNovoCartao
+            var json = EnviaRequisicao("/buscaItensCompra",
+                "idCompra=" + IdCompra
+            );
+
+            // Transforma Json em um Array 
+            dynamic resposta = JsonConvert.DeserializeObject(json);
+
+            // Retorna a requisição
+            return resposta;
+        }
+
     }
 
 }

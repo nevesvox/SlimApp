@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <StackLayout Margin="20,20,20,20">
             <Image Source="registro.png"
-                   WidthRequest="{OnPlatform iOS=100, Android=100}"
+                   WidthRequest="{OnPlatform iOS=90, Android=90}"
                    HorizontalOptions="Center"/>
             
             <ScrollView>
@@ -57,7 +57,10 @@
                            x:Name="entryConfirmacaoSenha"/>
 
                     <Button Text="Confirmar"
-                            Clicked="Button_Confirmar"/>
+                            Clicked="Button_Confirmar"
+                            TextColor="White"
+                            BackgroundColor="#2196F3"
+                            CornerRadius="10"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

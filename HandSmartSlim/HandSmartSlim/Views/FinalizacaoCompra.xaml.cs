@@ -16,11 +16,11 @@ namespace HandSmartSlim.Views
     {
         // Declara as variáveis
         ClienteService clienteService;
-        dynamic IdCartao;
-        string  NumeroCartao;
-        string  ImagemCartao;
-        int     IdCompra;
-        float   ValorCompra;
+        dynamic        IdCartao;
+        string         NumeroCartao;
+        string         ImagemCartao;
+        int            IdCompra;
+        float          ValorCompra;
 
         public FinalizacaoCompra(dynamic idCartao, string numeroCartao, string imagemCartao, int idCompra, float valorCompra)
         {
@@ -52,28 +52,38 @@ namespace HandSmartSlim.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            // Chama o Popup de Loading
-            await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
+            bool resposta = await DisplayAlert("Atenção", "Deseja continuar com o pagamento?", "Sim", "Não");
+            // Verifica a resposta do alerta
+            if (resposta)
+            {
+                // Chama o Popup de Loading
+                await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
             
-            // Chama a requisição de Finalização de Compra
-            var result = clienteService.FinalizaCompraCliente(IdCartao, IdCompra, ValorCompra);
+                // Chama a requisição de Finalização de Compra
+                var result = clienteService.FinalizaCompraCliente(IdCartao, IdCompra, ValorCompra);
 
-            // Remove o loading
-            await PopupNavigation.Instance.PopAsync();
+                // Remove o loading
+                await PopupNavigation.Instance.PopAsync();
 
-            // Verifica a resposta da requisição
-            if (result.Tipo == "ok")
-            {
-                // Exibe o alerta
-                await DisplayAlert("Compra realizada com Sucesso!", "Obrigado por sua Compra, você pode verificar suas compras realizadas atráves do seu Extrato", "Aceitar");
+                // Verifica a resposta da requisição
+                if (result.Tipo == "ok")
+                {
+                    // Exibe o alerta
+                    await DisplayAlert("Compra realizada com Sucesso!", "Obrigado por sua Compra, você pode verificar suas compras realizadas atráves do seu Extrato", "Aceitar");
 
-                // Retorna para a pagina Home
-                await Navigation.PushAsync(new Home());
-            } else
-            {
-                // Em caso de erro Exibe o alerta
-                await DisplayAlert("Ops...", "Não foi possivel finalizar sua compra. Tente novamente!", "Aceitar");
+                    // Retorna para a pagina Home
+                    await Navigation.PushAsync(new Home());
+                } else
+                {
+                    // Em caso de erro Exibe o alerta
+                    await DisplayAlert("Ops...", "Não foi possivel finalizar sua compra. Tente novamente!", "Aceitar");
+                }
             }
+        }
+
+        private void Button_Clicked_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

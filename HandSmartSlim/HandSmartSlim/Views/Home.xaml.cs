@@ -80,5 +80,13 @@ namespace HandSmartSlim.Views
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
+
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            // Chama o Popup de Loading
+            await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
+            // Chama a página de compra
+            await Navigation.PushAsync(new Extrato());
+        }
     }
 }

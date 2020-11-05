@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             mc:Ignorable="d"
+             x:Class="HandSmartSlim.Popups.CompraSelecionadaPopUpView">
+    <ContentPage.Content>
+        <StackLayout Margin="10,10,10,10" BackgroundColor="White">
+            <StackLayout VerticalOptions="Start">
+                <StackLayout Margin="10,10,10,10">
+                    <Label Text="Valor Total"
+                           FontSize="Large"
+                           VerticalOptions="Start" 
+                           HorizontalOptions="Start"/>
+                    <Label x:Name="ValorTotal"
+                           FontSize="60"
+                           VerticalOptions="CenterAndExpand" 
+                           HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout VerticalOptions="StartAndExpand">
+                <StackLayout Margin="10,10,10,10">
+                    <Grid BackgroundColor="Beige" Padding="20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="80" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Text="Qtd."
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"
+                       FontSize="15"/>
+
+                        <Label Text="Descrição"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="15"
+                       Grid.Column="1"/>
+
+                        <Label Text="Valor Un."
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="15"
+                       Grid.Column="2"/>
+
+                        <Label Text="Valor Total"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       FontSize="15"
+                       Grid.Column="3"/>
+
+                    </Grid>
+
+                    <ListView x:Name="listaItensCompra" ItemTapped="listaItensCompra_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <Grid Padding="20">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="35"/>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="70" />
+                                                <ColumnDefinition Width="80" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Label Text="{Binding Qtde}"
+                                               HorizontalOptions="Center"
+                                               FontSize="13"/>
+
+                                            <Label Text="{Binding Descricao}"
+                                               HorizontalOptions="Start"
+                                               LineBreakMode="NoWrap"
+                                               FontSize="13"
+                                               Grid.Column="1"/>
+
+                                            <Label Text="{Binding ValorUnitario, StringFormat='{}{0:c}'}"
+                                               HorizontalOptions="Center"
+                                               FontSize="13"
+                                               Grid.Column="2"/>
+
+                                            <Label Text="{Binding ValorTotal,  StringFormat='{}{0:c}'}"
+                                               HorizontalOptions="Center"
+                                               FontSize="13"
+                                               Grid.Column="3"/>
+                                        </Grid>
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout VerticalOptions="End" Margin="10,10,10,10">
+                <Button Text="Voltar"
+                        CornerRadius="10"
+                        Clicked="Button_Clicked"
+                        TextColor="White"
+                        BackgroundColor="#2196F3"/>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

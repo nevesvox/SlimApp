@@ -60,6 +60,7 @@
                     <ImageButton HorizontalOptions="CenterAndExpand"
                                     Grid.Column="1"
                                     Source="extrato"
+                                    Clicked="ImageButton_Clicked"
                                     BackgroundColor="Transparent"
                                     WidthRequest="75"/>
 

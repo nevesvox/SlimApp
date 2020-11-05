@@ -71,7 +71,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                    <Label Text="{Binding Qtde}"
+                                        <Label Text="{Binding Qtde}"
                                                HorizontalOptions="Center"
                                                FontSize="13"/>
 

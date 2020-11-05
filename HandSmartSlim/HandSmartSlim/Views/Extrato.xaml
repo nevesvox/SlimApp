@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HandSmartSlim.Views.Extrato"
+             Title="Extrato">
+    <ContentPage.Content>
+        <StackLayout Margin="10,20,10,20">
+            <StackLayout HorizontalOptions="Center"
+                         VerticalOptions="Start">
+                <Label Text="Últimas compras realizadas"
+                       FontSize="Large"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="StartAndExpand">
+                <ListView x:Name="ListaUltimasCompras" RowHeight="70" SeparatorVisibility="None" ItemTapped="ListaUltimasCompras_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Frame CornerRadius="10" BackgroundColor="Beige">
+                                        <StackLayout>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                
+                                                <Label Text="{Binding DataCompra}"
+                                                       Grid.Column="0"
+                                                       Grid.Row="0"/>
+
+                                                <Label Text="{Binding ValorTotal, StringFormat='{}{0:c}'}"
+                                                       Grid.Column="1"
+                                                       Grid.Row="0"/>
+                                                
+                                                <Image Source="{Binding Pagamento}"
+                                                       WidthRequest="25"
+                                                       Grid.Column="2"
+                                                       Grid.Row="0"/>
+                                            </Grid>
+
+
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    
+                </ListView>
+  
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

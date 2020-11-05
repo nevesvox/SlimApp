@@ -66,6 +66,7 @@
                         BackgroundColor="#2196F3"/>
                 
                 <Button Text="Cancelar"
+                        Clicked="Button_Clicked_1"
                         TextColor="White"
                         FontSize="Large"
                         BackgroundColor="Red"/>
