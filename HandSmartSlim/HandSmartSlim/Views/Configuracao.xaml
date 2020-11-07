@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behaviorPack="clr-namespace:Xamarin.Forms.BehaviorValidationPack;assembly=Xamarin.Forms.BehaviorValidationPack"
+             mc:Ignorable="d"
+             x:Class="HandSmartSlim.Views.Configuracao"
+             Title="Configurações">
+    <ContentPage.Content>
+        <StackLayout Margin="10,10,10,10">
+            <StackLayout VerticalOptions="Start">
+                <Image Source="user"
+                       WidthRequest="{OnPlatform iOS=70, Android=70}"/>
+            </StackLayout>
+            <ScrollView>
+            <StackLayout VerticalOptions="StartAndExpand">
+                <Label Text="Atualizar dados"
+                       BackgroundColor="Beige"
+                       FontSize="Large"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="Nome completo"/>
+                <Entry x:Name="lblNomeUsuario"
+                       TextTransform="Uppercase"
+                       MaxLength="99"
+                       FontSize="Medium"
+                       PlaceholderColor="DarkGray"/>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="CPF"
+                           Margin="0,0,0,0"
+                           Grid.Column="0"/>
+
+                    <Entry x:Name="lblCpfUsuario"
+                           VerticalOptions="Start"
+                           Margin="0,0,0,0"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                           FontSize="Medium"
+                           IsReadOnly="true">
+                        <Entry.Behaviors>
+                            <behaviorPack:MaskedBehavior Mask="XXX.XXX.XXX-XX"/>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Text="Telefone"
+                           Margin="0,0,0,0"
+                           Grid.Column="1"/>
+
+                    <Entry x:Name="lblTelefone"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           FontSize="Medium"
+                           Keyboard="Numeric">
+                        <Entry.Behaviors>
+                            <behaviorPack:MaskedBehavior Mask="(XX)XXXXX-XXXX"/>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                </Grid>
+
+                <Label Text="E-mail"/>
+
+                <Entry x:Name="lblEmailUsuario"
+                       Keyboard="Email"
+                       IsReadOnly="true"
+                       FontSize="Medium"/>
+
+                <Label Text="Endereço"
+                       BackgroundColor="Beige"
+                       FontSize="Large"
+                       HorizontalTextAlignment="Center"/>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    
+                    <Label Text="Estado"
+                            Grid.Column="0"
+                            Grid.Row="0"/>
+                    
+                    <Picker x:Name="pickerEstados"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            ItemDisplayBinding="{Binding EstadoUF}"
+                            />
+
+                    <Label Text="Cidade"
+                           Grid.Column="1"
+                           Grid.Row="0"/>
+
+                    <Picker x:Name="pickerCidades"
+                            IsEnabled="False"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            ItemDisplayBinding="{Binding CidadeNome}"/>
+
+                </Grid>
+
+                <Label Text="Rua"/>
+
+                <Entry x:Name="lblRua"
+                       TextTransform="Uppercase"
+                       MaxLength="99"
+                       IsEnabled="False"
+                       Keyboard="Text"
+                       FontSize="Medium"/>
+
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Número"
+                           Grid.Column="0"
+                           Grid.Row="0"/>
+
+                    <Entry Keyboard="Text"
+                           TextTransform="Uppercase"
+                           MaxLength="14"
+                           IsEnabled="False"
+                           x:Name="entryLogradouro"
+                           Grid.Column="0"
+                           Grid.Row="1"/>
+
+
+                    <Label Text="CEP"
+                           Grid.Column="1"
+                           Grid.Row="0"/>
+
+                    <Entry Keyboard="Numeric"
+                           IsEnabled="False"
+                           x:Name="entryCep"
+                           Grid.Column="1"
+                           Grid.Row="1">
+                        <Entry.Behaviors>
+                            <behaviorPack:MaskedBehavior Mask="XXXXX-XXX"/>
+                        </Entry.Behaviors>
+                    </Entry>
+                </Grid>
+
+            </StackLayout>
+            </ScrollView>
+            <StackLayout VerticalOptions="End">
+                <Button Text="Salvar"
+                        Clicked="Button_Clicked"
+                        TextColor="White"
+                        CornerRadius="10"
+                        BackgroundColor="#2196F3"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="HandSmartSlim.Popups.ItemSelecionadoPopUpView">
     <ContentPage.Content>
-        <StackLayout Margin="20,20,20,20" BackgroundColor="White">
+        <StackLayout Margin="10,10,10,10" BackgroundColor="White">
             <StackLayout VerticalOptions="CenterAndExpand" 
                          HorizontalOptions="CenterAndExpand" >
                 

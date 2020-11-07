@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout Margin="10,10,10,10" BackgroundColor="White">
             <StackLayout VerticalOptions="Start">
-                <StackLayout Margin="10,10,10,10">
+                <StackLayout Margin="10,10,10,0">
                     <Label Text="Valor Total"
                            FontSize="Large"
                            VerticalOptions="Start" 
@@ -18,10 +18,36 @@
                            FontSize="60"
                            VerticalOptions="CenterAndExpand" 
                            HorizontalOptions="CenterAndExpand"/>
+                    <Frame BackgroundColor="DarkKhaki" CornerRadius="10">
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="35" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Image x:Name="imgTipoPagamento"
+                                       Grid.Column="0"
+                                       Grid.Row="0"
+                                       WidthRequest="30"/>
+
+                                <Label x:Name="CartaoUtilizado"
+                                       Grid.Column="1"
+                                       Grid.Row="0"
+                                       TextColor="White"
+                                       FontSize="Medium"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Center"/>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
                 </StackLayout>
             </StackLayout>
             <StackLayout VerticalOptions="StartAndExpand">
-                <StackLayout Margin="10,10,10,10">
+                <StackLayout Margin="10,0,10,0">
                     <Grid BackgroundColor="Beige" Padding="20">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="35" />

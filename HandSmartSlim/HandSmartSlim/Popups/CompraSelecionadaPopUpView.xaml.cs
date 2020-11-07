@@ -25,7 +25,9 @@ namespace HandSmartSlim.Popups
             // Recupera dados da Compra
             CompraClicada   = compraClicada;
             // Atualiza o valor total da Compra
-            ValorTotal.Text = CompraClicada.ValorTotal.ToString("C");
+            ValorTotal.Text         = CompraClicada.ValorTotal.ToString("C");
+            CartaoUtilizado.Text    = CompraClicada.NumeroCartao;
+            imgTipoPagamento.Source = CompraClicada.Pagamento;
             // Chama a função que carrega o List
             BuscaItensCompraSelecionada();
         }
@@ -56,7 +58,6 @@ namespace HandSmartSlim.Popups
                 listaItensCompra.ItemsSource = ListaItens;
             }
 
-            Console.WriteLine(resultBusca);
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -65,9 +66,14 @@ namespace HandSmartSlim.Popups
             PopupNavigation.Instance.PopAsync();
         }
 
-        private void listaItensCompra_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void listaItensCompra_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (sender is ListView lv) lv.SelectedItem = null;
+
+            // Recupera o Item Clicado
+            var itemSelecionado = e.Item as ExtratoModel;
+
+            await DisplayAlert("Descrição", itemSelecionado.Descricao, "OK");
         }
     }
 }

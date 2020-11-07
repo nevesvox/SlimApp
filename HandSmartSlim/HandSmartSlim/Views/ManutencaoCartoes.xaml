@@ -116,7 +116,7 @@
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
-            <StackLayout VerticalOptions="EndAndExpand">
+            <StackLayout VerticalOptions="EndAndExpand" Margin="20,0,20,20">
                 <Button Text="Salvar"
                         CornerRadius="10"
                         TextColor="White"

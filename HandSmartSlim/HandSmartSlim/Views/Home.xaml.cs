@@ -88,5 +88,20 @@ namespace HandSmartSlim.Views
             // Chama a página de compra
             await Navigation.PushAsync(new Extrato());
         }
+
+        private async void ImageButton_Clicked_1(object sender, EventArgs e)
+        {
+            // Chama o Popup de Loading
+            await PopupNavigation.Instance.PushAsync(new LoadingPopUpView());
+            // Chama a página de compra
+            await Navigation.PushAsync(new Configuracao(this));
+        }
+
+        // Função utilizada na atualização de Cadastro na rotina de Configurações
+        public void AtualizaNome()
+        {
+            // Atualiza o nome do Usuario logado
+            nomeUsuario.Text = ClienteLogado.nome;
+        }
     }
 }

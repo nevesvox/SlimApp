@@ -53,34 +53,35 @@
                                  Clicked="AbrePaginaCompra"/>
 
                     <Label Text="Comprar"
-                               HorizontalOptions="Center"
-                               FontSize="18"
-                               Grid.Row="2"/>
+                           HorizontalOptions="Center"
+                           FontSize="Small"
+                           Grid.Row="2"/>
 
                     <ImageButton HorizontalOptions="CenterAndExpand"
-                                    Grid.Column="1"
-                                    Source="extrato"
-                                    Clicked="ImageButton_Clicked"
-                                    BackgroundColor="Transparent"
-                                    WidthRequest="75"/>
+                                 Grid.Column="1"
+                                 Source="extrato"
+                                 Clicked="ImageButton_Clicked"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="75"/>
 
                     <Label Text="Extrato"
-                            Grid.Row="2"
-                            FontSize="18"
-                            HorizontalOptions="Center"
-                            Grid.Column="1"/>
+                           Grid.Row="2"
+                           FontSize="Small"
+                           HorizontalOptions="Center"
+                           Grid.Column="1"/>
 
                     <ImageButton HorizontalOptions="CenterAndExpand"
-                                    Grid.Column="2"
-                                    Source="configuracao"
-                                    BackgroundColor="Transparent"
-                                    WidthRequest="75"/>
+                                 Grid.Column="2"
+                                 Source="configuracao"
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="75"
+                                 Clicked="ImageButton_Clicked_1"/>
 
                     <Label Text="Configurações"
-                               Grid.Row="2"
-                               FontSize="18"
-                               HorizontalOptions="Center"
-                               Grid.Column="2"/>
+                           Grid.Row="2"
+                           FontSize="Small"
+                           HorizontalOptions="Center"
+                           Grid.Column="2"/>
 
                 </Grid>
 
@@ -102,7 +103,7 @@
 
                     <Label Text="Cartões"
                                HorizontalOptions="Center"
-                               FontSize="18"
+                               FontSize="Small"
                                Grid.Row="2"/>
 
                     <ImageButton HorizontalOptions="CenterAndExpand"
@@ -114,7 +115,7 @@
 
                     <Label Text="Sair"
                             Grid.Row="2"
-                            FontSize="18"
+                            FontSize="Small"
                             HorizontalOptions="Center"
                             Grid.Column="1"/>
 
