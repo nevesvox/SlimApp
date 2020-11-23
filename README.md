@@ -18,7 +18,7 @@ O aplicativo está sendo desenvolvido para um projeto de faculdade para a discip
   <li>Cerveja Wienbier 58 550ml</li>
 </ul>
 
-<a href="https://drive.google.com/file/d/1nEEh_XyiDb2drnP5sXEH-nEJZ6wyz678/view?usp=sharing">Realizar Download do APK (DEV 1.0).</a>
+<a href="https://drive.google.com/file/d/1BTJzsrJoA2hqRpts-NFn5xWjRdmuwGpv/view?usp=sharing">Realizar Download do APK (DEV 1.1)</a>
 
 
  <b>-Observações Para Devs*</b>
